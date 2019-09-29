@@ -1,0 +1,18 @@
+{
+        "config": {
+                "chainId": {{.GenesisDta.ChainId}},
+                "homesteadBlock": 0,
+                "eip155Block": 0,
+                "eip158Block": 0
+        },
+        "difficulty": "1",
+        "gasLimit": "0",
+        "alloc":{
+            {{range $i, $acc := .GenesisDta.AllocAccounts -}}
+                {{if $i}},{{end -}}
+                "{{$acc.PublicKey}}": {
+                    "balance": "{{$acc.Balance}}"
+                }
+            {{end -}}
+        }
+}

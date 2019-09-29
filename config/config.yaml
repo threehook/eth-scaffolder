@@ -1,0 +1,29 @@
+
+Network:
+  ChainId: 19631007
+  Difficulty: "1"
+  GasLimit: "0"
+  GenesisNode:
+    Dir: "testdata1"
+    ListenAddr: 30301
+    HttpPort: 8081
+      # Only one node can have the genesis accounts
+    accounts:
+      - PasswordFile: "./password.txt"
+        # Balance in Wei
+        Balance: 300000000000000000000
+      - PasswordFile: "./password.txt"
+        Balance: 400000000000000000000
+      - PasswordFile: "./password.txt"
+        Balance: 500000000000000000000
+  otherNodes:
+    - Dir: "testdata2"
+      ListenAddr: 30302
+      HttpPort: 8082
+      accounts:
+        - PasswordFile: "./password.txt"
+    - Dir: "testdata3"
+      ListenAddr: 30303
+      HttpPort: 8083
+      accounts:
+        - PasswordFile: "./password.txt"
