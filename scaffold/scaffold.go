@@ -50,7 +50,6 @@ func ScaffoldNetwork() {
 }
 
 func removeNodeDirs() {
-	// TODO: also remove ~/.ethereum and create again
 	installroot := cmdline.CmdlineArgs().GetArg("installroot")
 	genDir := installroot.(string) + "/" + config.GetNetwork().GenesisNode.Dir
 
