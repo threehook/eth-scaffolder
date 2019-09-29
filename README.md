@@ -70,6 +70,6 @@ The password in this default password file is: *`secret`*
 
 
 <H4>Note</H4>
-Scaffolding a new network can __not__ be done when a config file's `ListenAddr` is in use during the scaffolding.
+Scaffolding a new network can **not** be done when a config file's `ListenAddr` is in use during the scaffolding.
 It will show an error message when you do!
  
