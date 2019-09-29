@@ -21,6 +21,7 @@ You clone the **eth-scaffolder** sources by `git clone git@github.com:threehook/
 <H4>Configuration</H4>
 Configuration of the private network is defined in a yaml file.<br/>
 Default the config file inside the sources is used (config/config.yaml). It looks like this:<br/>
+
 ```
 Network:
   ChainId: 17
@@ -55,7 +56,7 @@ Network:
 If you want to define a different network you place it anywhere on your filesystem and use the -c flag to point to it.
 
 <H4>Password files</H4>
-Every account defined in the config file needs a password file.
+Every account defined in the config file needs a password file.<br/>
 A password file is a text file with on the first line your chosen password.<br/>
 During testing you need this password to send ether or to deploy a smart contract.<br/>
 If you don't want to use your own password file(s) you may use the one in the sources by defining `- PasswordFile: "./password.txt"` under every account in the config file.<br/> 
