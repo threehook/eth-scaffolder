@@ -6,14 +6,25 @@ import (
 	"github.com/threehook/eth-scaffolder/cmdline"
 	"github.com/threehook/eth-scaffolder/config"
 	"github.com/threehook/eth-scaffolder/scaffold"
+	"log"
 	"os"
 )
 
 var (
+	user string
+
 	configfile  = flag.StringP("configfile", "c", "config/config", "path to yaml ethereum private network config file w/o extension")
-	installroot = flag.StringP("installroot", "i", "/home/tvdven", "root location of installation")
+	installroot = flag.StringP("installroot", "i", "/home/"+user, "root location of installation")
 	help        = flag.BoolP("help", "h", false, "prints this message")
 )
+
+func init() {
+	var err error
+	user, err = os.UserHomeDir()
+	if err != nil {
+		log.Fatal("Could not determine users' home dir")
+	}
+}
 
 func main() {
 	_ = processArgs()

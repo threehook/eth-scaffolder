@@ -1,6 +1,6 @@
 
 Network:
-  ChainId: 19631007
+  ChainId: 17
   Difficulty: "1"
   GasLimit: "0"
   GenesisNode:
