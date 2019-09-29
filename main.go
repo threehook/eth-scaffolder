@@ -11,19 +11,19 @@ import (
 )
 
 var (
-	user string
+	user = userHome()
 
 	configfile  = flag.StringP("configfile", "c", "config/config", "path to yaml ethereum private network config file w/o extension")
-	installroot = flag.StringP("installroot", "i", "/home/"+user, "root location of installation")
+	installroot = flag.StringP("installroot", "i", user, "root location of installation")
 	help        = flag.BoolP("help", "h", false, "prints this message")
 )
 
-func init() {
-	var err error
-	user, err = os.UserHomeDir()
+func userHome() string {
+	user, err := os.UserHomeDir()
 	if err != nil {
 		log.Fatal("Could not determine users' home dir")
 	}
+	return user
 }
 
 func main() {
