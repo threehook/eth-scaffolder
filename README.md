@@ -59,7 +59,8 @@ If you want to define a different network you place it anywhere on your filesyst
 Every account defined in the config file needs a password file.<br/>
 A password file is a text file with on the first line your chosen password.<br/>
 During testing you need this password to send ether or to deploy a smart contract.<br/>
-If you don't want to use your own password file(s) you may use the one in the sources by defining `- PasswordFile: "./password.txt"` under every account in the config file.<br/> 
+If you don't want to use your own password file(s) you may use the one in the sources by defining:<br/>
+`- PasswordFile: "./password.txt"` under every account in the config file.<br/> 
 The password in this default password file is: *`secret`*
 
 
