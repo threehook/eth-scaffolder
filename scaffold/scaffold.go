@@ -5,9 +5,11 @@ import (
 	"github.com/threehook/eth-scaffolder/cmdline"
 	"github.com/threehook/eth-scaffolder/config"
 	"github.com/threehook/eth-scaffolder/tmpl"
+	"github.com/threehook/eth-scaffolder/util"
 	"log"
 	"os"
 	"os/exec"
+	"path/filepath"
 	"regexp"
 	"strconv"
 	"strings"
@@ -101,7 +103,11 @@ func copyGenesisToOtherNodes() {
 
 	for _, node := range *config.GetNetwork().Nodes {
 		nodeDir := node.Dir
-		_ = exec.Command("cp", genDir+"/genesis.json", installroot.(string)+"/"+nodeDir).Run()
+		srcFile := genDir + "/genesis.json"
+		targetDir := installroot.(string) + "/" + nodeDir
+		if err := util.CopyToDir(srcFile, targetDir); err != nil {
+			log.Fatal(err)
+		}
 	}
 }
 
@@ -127,7 +133,7 @@ func initializeNodes() error {
 	genNode := config.GetNetwork().GenesisNode
 	installroot := cmdline.CmdlineArgs().GetArg("installroot")
 
-	genDir := installroot.(string) + "/" + genNode.Dir
+	genDir := filepath.FromSlash(installroot.(string) + "/" + genNode.Dir)
 	err = exec.Command("geth", "--nousb", "--datadir", genDir, "init", genDir+"/genesis.json").Run()
 	if err != nil {
 		return err
