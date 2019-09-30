@@ -16,11 +16,12 @@ Now you can use **eth-scaffolder** to setup this private network on your local m
 The only prerequisite is that you have a recent *`geth`* running on your local machine. It must be on your PATH.<br/>
 You can download *`geth`* here: https://geth.ethereum.org/downloads/index.html<br/>
 
-You clone the **eth-scaffolder** sources by `git clone git@github.com:threehook/eth-scaffolder.git` and build it by `make build` from the root directory.
+You clone the **eth-scaffolder** sources by `git clone git@github.com:threehook/eth-scaffolder.git` and build it by running `make` from the root directory.
 
 <H4>Configuration</H4>
 Configuration of the private network is defined in a yaml file.<br/>
-Default the config file inside the sources is used (config/config.yaml). It looks like this:<br/>
+Default the builtin config file is used (config/config.yaml). It is placed in the dist directory when building.<br/> 
+It looks like this:<br/>
 
 ```
 Network:
@@ -59,14 +60,20 @@ If you want to define a different network you place it anywhere on your filesyst
 Every account defined in the config file needs a password file.<br/>
 A password file is a text file with on the first line your chosen password.<br/>
 During testing you need this password to send ether or to deploy a smart contract.<br/>
-If you don't want to use your own password file(s) you may use the one in the sources by defining the following under every account in the config file:
+A default password.txt file is placed in the dist direcory.<br/>
+The password in this default password file is: *`secret`*<br/>
+
+If you want to use your own password file(s) you can place them anywhere and point to them from the config file:
 
 ```
 - PasswordFile: "./password.txt"
 ```
 
- 
-The password in this default password file is: *`secret`*
+<H4>Running a node</H4>
+You can run a node like this:<br/>
+`geth --config /path/to/your_config.toml console 2>> ~/node1.log`<br/>
+If you want to read more about using geth in a private ethereum network try googling with similar searches like `ethereum private network`<br/>
+
 
 <H4>Note</H4>
 Scaffolding a new network can **not** be done when a config file's `ListenAddr` is in use during the scaffolding.
