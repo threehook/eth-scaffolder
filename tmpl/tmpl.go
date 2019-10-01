@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"github.com/threehook/eth-scaffolder/cmdline"
 	"github.com/threehook/eth-scaffolder/config"
+	"github.com/threehook/eth-scaffolder/util"
 	"github.com/tidwall/pretty"
 	"log"
 	"os"
@@ -63,8 +64,8 @@ func createConfigTomlGenesisNode(enodes map[string]string) error {
 
 	configDta := ConfigData{
 		NetworkId:   config.GetNetwork().ChainId,
-		InstallRoot: installRoot,
-		DataDir:     installRoot + "/" + genNode.Dir,
+		InstallRoot: util.OsAwareFilePath(installRoot + "/"),
+		DataDir:     util.OsAwareFilePath(installRoot + "/" + genNode.Dir),
 		HttpPort:    genNode.HttpPort,
 		StaticNodes: createStaticNodes(enodes, genNode.Dir),
 		ListenAddr:  genNode.ListenAddr,
@@ -90,7 +91,7 @@ func createConfigTomlOtherNodes(enodes map[string]string) error {
 		configDta := ConfigData{
 			NetworkId:   config.GetNetwork().ChainId,
 			InstallRoot: installRoot,
-			DataDir:     installRoot + "/" + node.Dir,
+			DataDir:     util.OsAwareFilePath(installRoot + "/" + node.Dir),
 			HttpPort:    node.HttpPort,
 			StaticNodes: createStaticNodes(enodes, node.Dir),
 			ListenAddr:  node.ListenAddr,

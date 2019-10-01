@@ -4,6 +4,7 @@ import (
 	"io"
 	"os"
 	"path"
+	"runtime"
 	"strings"
 )
 
@@ -29,4 +30,16 @@ func CopyToDir(src, dstdir string) error {
 	}
 
 	return nil
+}
+
+func OsAwareFilePath(path string) string {
+	var output string
+	if runtime.GOOS == "windows" {
+		replacer := strings.NewReplacer("/", "\\\\", "\\", "\\\\")
+		output = replacer.Replace(path)
+	} else {
+		replacer := strings.NewReplacer("\\", "/")
+		output = replacer.Replace(path)
+	}
+	return output
 }
