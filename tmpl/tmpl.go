@@ -90,7 +90,7 @@ func createConfigTomlOtherNodes(enodes map[string]string) error {
 	for _, node := range *config.GetNetwork().Nodes {
 		configDta := ConfigData{
 			NetworkId:   config.GetNetwork().ChainId,
-			InstallRoot: installRoot,
+			InstallRoot: util.OsAwareFilePath(installRoot + "/"),
 			DataDir:     util.OsAwareFilePath(installRoot + "/" + node.Dir),
 			HttpPort:    node.HttpPort,
 			StaticNodes: createStaticNodes(enodes, node.Dir),
